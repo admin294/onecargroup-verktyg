@@ -1,5 +1,5 @@
 // kund.js — PUBLIK självbetjäningsvy (/kund). Ingen inloggning.
-// Kunden slår upp regnr, ser bilen + AVILOO-batteritest, växlar Offert/
+// Kunden slår upp regnr, ser bilen, växlar Offert/
 // Jämförelse, väljer garanti + däck och ser livepris med 48h-kampanjnedräkning.
 // Återanvänder de delade komponenterna. Sparar inga poster (ingen delbar länk).
 
@@ -77,7 +77,7 @@ function hero() {
         h('a', { class: 'brandmark', href: 'https://www.onecargroup.se', target: '_blank', rel: 'noopener' },
           h('img', { src: LOGO_DARK, alt: 'One Car Group' })),
         h('h1', { class: 'kundhero__title' }, 'Räkna ut ditt pris'),
-        h('p', { class: 'kundhero__sub' }, 'Ange registreringsnummer så visar vi bilen, batterihälsan (AVILOO-test) och ett prisförslag med garanti och vinterdäck. Kampanjpriset gäller i 48 timmar.'),
+        h('p', { class: 'kundhero__sub' }, 'Ange registreringsnummer så visar vi bilen och ett prisförslag med garanti och vinterdäck. Kampanjpriset gäller i 48 timmar.'),
       ),
     ),
   );
@@ -287,7 +287,7 @@ function compareEmptyHint(grid) {
   return h('div', { class: 'empty' },
     h('div', { class: 'empty__ic' }, icon('image')),
     h('h3', {}, 'Jämför två till fyra bilar'),
-    h('p', {}, 'Skriv in registreringsnummer för de bilar du vill jämföra så visas de sida vid sida med batterihälsa, pris och utrustning.'),
+    h('p', {}, 'Skriv in registreringsnummer för de bilar du vill jämföra så visas de sida vid sida med pris och utrustning.'),
   );
 }
 

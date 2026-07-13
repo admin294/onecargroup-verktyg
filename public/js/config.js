@@ -129,13 +129,3 @@ export function datum(iso) {
 export function normRegnr(s) {
   return String(s || '').toUpperCase().replace(/[\s-]+/g, '').trim();
 }
-
-// Battery SOH → hälsonivå för färgsättning av badgen.
-// Nivåer: good ≥ 90, fair ≥ 80, weak < 80. null battery → null (dölj badge).
-export function batteryLevel(battery) {
-  if (!battery || battery.soh == null) return null;
-  const soh = Number(battery.soh);
-  if (soh >= 90) return 'good';
-  if (soh >= 80) return 'fair';
-  return 'weak';
-}

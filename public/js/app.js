@@ -270,7 +270,7 @@ function emptyCompareHint(grid) {
   return h('div', { class: 'empty' },
     h('div', { class: 'empty__ic' }, icon('image')),
     h('h3', {}, 'Ingen jämförelse än'),
-    h('p', {}, 'Ange två till fyra registreringsnummer och hämta bilarna för att se dem sida vid sida med batterihälsa, pris och utrustning.'),
+    h('p', {}, 'Ange två till fyra registreringsnummer och hämta bilarna för att se dem sida vid sida med pris och utrustning.'),
   );
 }
 
