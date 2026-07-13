@@ -330,6 +330,25 @@ input, select, textarea, button { font: inherit; }
 .ingar__body { font-size: 0.84rem; color: var(--ink-2); line-height: 1.45; }
 .ingar__lead { color: oklch(0.42 0.11 155); }
 
+/* Räkneexempel — finansieringskalkylator */
+.finance__ctls { display: flex; flex-direction: column; gap: 15px; }
+.finance__ctl { display: flex; flex-direction: column; gap: 8px; }
+.finance__ctlhead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.finance__ctllabel { font-size: 0.83rem; font-weight: 600; color: var(--ink-2); }
+.finance__ctlval { font-size: 0.82rem; font-weight: 600; color: var(--brand-700); white-space: nowrap; }
+.finance__range { width: 100%; accent-color: var(--brand); height: 24px; cursor: pointer; touch-action: none; }
+.finance__hint { font-size: 0.74rem; color: var(--ink-4); }
+.finance__results { display: flex; flex-direction: column; border-top: 1px solid var(--border); padding-top: 12px; }
+.finance__res { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 5px 0; font-size: 0.9rem; }
+.finance__reslabel { color: var(--ink-2); }
+.finance__amt { font-weight: 600; color: var(--ink); }
+.finance__month { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--brand); color: var(--on-brand); border-radius: var(--r); padding: 14px 16px; }
+.finance__month-label { font-size: 0.9rem; font-weight: 600; }
+.finance__month-amt { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; }
+.finance__disclaimer { font-size: 0.74rem; color: var(--ink-4); line-height: 1.45; margin-top: -8px; }
+.finance__perk { display: flex; align-items: flex-start; gap: 8px; background: var(--brand-tint); border: 1px solid var(--brand-tint-2); border-radius: var(--r); padding: 10px 13px; font-size: 0.84rem; font-weight: 600; color: var(--brand-700); }
+.finance__perk-ico { flex: 0 0 auto; width: 1.1em; height: 1.1em; color: var(--brand); margin-top: 1px; }
+
 /* Kampanjnedräkning — urgency-banner (48 h) */
 .offert-view { display: flex; flex-direction: column; gap: 20px; }
 .countdown { display: flex; align-items: center; gap: 10px; background: var(--brand-tint); border: 1px solid var(--brand-tint-2); border-radius: var(--r); padding: 11px 15px; color: var(--brand-700); }

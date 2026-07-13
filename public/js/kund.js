@@ -10,7 +10,7 @@ import {
 } from './config.js';
 import {
   h, clear, icon, carCard, offertCar, breakdownView, countdownBanner, kontaktBlock, plate,
-  bokaButton, bokaCta,
+  bokaButton, bokaCta, financeCalculator,
 } from './components.js';
 
 const LOGO_DARK = 'https://usercontent.one/wp/www.onecargroup.se/wp-content/uploads/2026/05/cropped-One-Car-192x192.png';
@@ -203,6 +203,7 @@ function buildOffert(car) {
       ),
     ),
     breakdownMount,
+    financeCalculator(car),
     kontaktBlock(KONTAKT, { compact: true }),
   );
 
