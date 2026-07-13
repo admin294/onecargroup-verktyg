@@ -1,0 +1,12 @@
+{
+  "services": {
+    "app": {
+      "type": "backend",
+      "runtime": "node",
+      "path": ".",
+      "command": "node src/server.js",
+      "preview": true,
+      "volumes": ["./data:/app/data"]
+    }
+  }
+}
