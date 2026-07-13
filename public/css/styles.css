@@ -247,6 +247,8 @@ input, select, textarea, button { font: inherit; }
 .history__k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-4); font-weight: 600; }
 .history__d { font-size: 0.86rem; }
 .history__m { color: var(--ink-3); }
+.servicehist { display: flex; flex-direction: column; gap: 8px; }
+.servicehist__note { font-size: 0.78rem; color: var(--ink-4); line-height: 1.4; }
 
 /* Utrustning */
 .equip { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
