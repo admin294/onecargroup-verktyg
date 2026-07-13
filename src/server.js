@@ -1,4 +1,4 @@
-// Riddermark Bilverktyg — backend server.
+// One Car Group Bilverktyg — backend server.
 // Implements the shared API contract (docs/API.md) and serves public/ (built by
 // the frontend session) as static. Backend owns: lib/, server.js, gate.json, docs/.
 import express from 'express';
@@ -256,15 +256,16 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-// Self-contained, on-brand cancellation page (tegelrött #B4180C, matching the
-// frontend palette). No external assets. The Avboka button POSTs the token to
-// /api/kund/avboka. Handles not-found and already-cancelled states.
+// Self-contained cancellation page in a brand-neutral graphite palette (the
+// frontend session owns the real One Car Group palette). No external assets.
+// The Avboka button POSTs the token to /api/kund/avboka. Handles not-found and
+// already-cancelled states.
 function renderAvbokaPage(booking, token) {
   const shell = (body) => `<!doctype html><html lang="sv"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avboka provkörning — Riddermark Bil</title>
+<title>Avboka provkörning — One Car Group</title>
 <style>
-  :root{ --brand:#B4180C; --brand-dark:#A81818; --ink:#1a1a1a; --muted:#6b6b6b;
+  :root{ --brand:#1a1a1a; --brand-dark:#000; --ink:#1a1a1a; --muted:#6b6b6b;
     --bg:#f5f4f2; --card:#fff; --line:#e6e3df; --radius:14px; }
   *{box-sizing:border-box}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -309,7 +310,7 @@ function renderAvbokaPage(booking, token) {
   }
 
   return shell(`<h1>Avboka provkörning</h1>
-<p class="lead">Vill du avboka din provkörning hos Riddermark Bil?</p>${summary}
+<p class="lead">Vill du avboka din provkörning hos One Car Group?</p>${summary}
 <button id="avboka">Avboka provkörning</button>
 <div class="msg" id="msg"></div>
 <script>
@@ -331,15 +332,15 @@ function renderAvbokaPage(booking, token) {
 
 // Minimal placeholder shown only until the frontend session ships public/.
 const FALLBACK_HTML = `<!doctype html><meta charset="utf-8">
-<title>Riddermark Bilverktyg</title>
+<title>One Car Group Bilverktyg</title>
 <body style="font-family:system-ui;max-width:40rem;margin:4rem auto;padding:0 1rem">
-<h1>Riddermark Bilverktyg</h1>
+<h1>One Car Group Bilverktyg</h1>
 <p>Backend är igång. Frontend (public/) byggs i en separat session.</p>
 <p><a href="https://gate.software/?ref=poweredby" target="_blank" rel="noopener" data-gate-powered style="color:inherit;font:inherit;text-decoration:underline;">Powered by GATE</a></p>
 </body>`;
 
 app.listen(PORT, async () => {
-  log.info(`Riddermark Bilverktyg backend listening on :${PORT} (NODE_ENV=${process.env.NODE_ENV || 'development'})`);
+  log.info(`One Car Group Bilverktyg backend listening on :${PORT} (NODE_ENV=${process.env.NODE_ENV || 'development'})`);
   if (!isConfigured()) log.warn('APP_PASSWORD not set — /api/login will 500 until configured');
   startCleanupTimer();
   // Warm the inventory cache so the first lookup is fast (best-effort).
