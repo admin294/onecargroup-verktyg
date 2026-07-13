@@ -4,7 +4,7 @@ import { apiGetRecord, MOCK } from './api.js';
 import { priceBreakdown, datum, kampanjDeadline } from './config.js';
 import { h, clear, icon, carCard, offertCar, breakdownView, countdownBanner, bokaButton, bokaCta, plate, mockRibbon } from './components.js';
 
-const LOGO_DARK = 'https://webfiles24.blob.core.windows.net/webfiles/new-design/assets/logo/logo-dark.png';
+const LOGO_DARK = 'https://usercontent.one/wp/www.onecargroup.se/wp-content/uploads/2026/05/onecargrouplogga-140x140.png';
 const root = document.getElementById('app');
 
 // id från /v/:id (eller ?id= som reserv för statisk servering).
@@ -31,7 +31,7 @@ function shell(content, heroData) {
     h('header', { class: 'pubhero' },
       h('div', { class: 'container' },
         h('div', { class: 'pubhero__in' },
-          h('img', { class: 'pubhero__logo', src: LOGO_DARK, alt: 'Riddermark Bil' }),
+          h('img', { class: 'pubhero__logo', src: LOGO_DARK, alt: 'One Car Group' }),
           heroData ? [
             h('span', { class: 'pubhero__kicker' }, heroData.kicker),
             h('h1', { class: 'pubhero__title' }, heroData.title),
@@ -53,7 +53,7 @@ function renderRecord(record) {
     title: isOffert
       ? (config?.customer?.name ? `Erbjudande till ${config.customer.name}` : 'Ditt erbjudande')
       : `${cars.length} bilar sida vid sida`,
-    meta: `Från Riddermark Bil${createdAt ? ' · ' + datum(createdAt) : ''}`,
+    meta: `Från One Car Group${createdAt ? ' · ' + datum(createdAt) : ''}`,
   };
 
   const blocks = [];
@@ -128,7 +128,7 @@ function renderMissing(msg) {
       h('div', { class: 'empty__ic' }, icon('external')),
       h('h3', {}, 'Länken finns inte'),
       h('p', {}, msg || 'Den här delade länken har antingen gått ut (länkar gäller i 7 dagar) eller så är adressen felaktig.'),
-      h('a', { class: 'btn btn--ghost', href: 'https://www.riddermarkbil.se', target: '_blank', rel: 'noopener', style: { marginTop: '18px' } }, 'Till riddermarkbil.se'),
+      h('a', { class: 'btn btn--ghost', href: 'https://www.onecargroup.se', target: '_blank', rel: 'noopener', style: { marginTop: '18px' } }, 'Till onecargroup.se'),
     ),
   ));
 }
@@ -137,7 +137,7 @@ function siteFooter() {
   return h('footer', { class: 'sitefooter' },
     h('div', { class: 'container' },
       h('div', { class: 'sitefooter__in' },
-        h('span', { class: 'sitefooter__copy' }, `© ${new Date().getFullYear()} Riddermark Bil`),
+        h('span', { class: 'sitefooter__copy' }, `© ${new Date().getFullYear()} One Car Group`),
         h('a', { class: 'gate-powered', href: 'https://gate1.dev', target: '_blank', rel: 'noopener', dataset: { gatePowered: '' } },
           h('span', { class: 'gate-powered__dot' }), 'Powered by GATE'),
       ),

@@ -5,7 +5,7 @@
 
 export const RDM55F = {
   regnr: 'RDM55F',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/bmw/rdm55f/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/bmw/rdm55f/',
   make: 'BMW',
   model: 'iX3',
   modelDescription: '286hk Charged Panorama Adapt-fart Elstol Läder MOMS',
@@ -49,7 +49,7 @@ export const RDM55F = {
 // att jämförelsevyn ska se levande ut under utveckling.
 const TSL44K = {
   regnr: 'TSL44K',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/tesla/tsl44k/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/tesla/tsl44k/',
   make: 'Tesla', model: 'Model 3',
   modelDescription: 'Long Range AWD Pano Autopilot Vinterhjul MOMS',
   carName: 'Tesla Model 3 Long Range AWD, 2022',
@@ -76,7 +76,7 @@ const TSL44K = {
 
 const POL09X = {
   regnr: 'POL09X',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/polestar/pol09x/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/polestar/pol09x/',
   make: 'Polestar', model: '2',
   modelDescription: 'Long Range Dual Motor Plus Pilot Läder',
   carName: 'Polestar 2 Long Range Dual Motor, 2021',
@@ -103,7 +103,7 @@ const POL09X = {
 // Bil utan batteritest (t.ex. ingen AVILOO) → battery null, badgen döljs.
 const VOL71C = {
   regnr: 'VOL71C',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/volvo/vol71c/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/volvo/vol71c/',
   make: 'Volvo', model: 'XC40',
   modelDescription: 'Recharge Single Motor Core',
   carName: 'Volvo XC40 Recharge, 2023',

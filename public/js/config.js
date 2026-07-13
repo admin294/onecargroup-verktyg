@@ -14,10 +14,10 @@ export const REG_AVGIFT_SEK = 1495;
 
 // Säljarkontakt som visas på den publika kundsidan (/kund).
 export const KONTAKT = {
-  namn: 'Adam Åhfeldt',
-  titel: 'Försäljning',
-  telefon: '070-444 76 83',
-  mejl: 'Adam.ahfeldt@riddermarkbil.se',
+  namn: 'One Car Group',
+  titel: 'Försäljning · Uppsala',
+  telefon: '018-32 32 80',
+  mejl: 'info@onecargroup.se',
   sprak: 'Svenska',
 };
 

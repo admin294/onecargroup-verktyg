@@ -228,7 +228,7 @@ export function plate(regnr) {
   return h('span', { class: 'plate' }, h('span', { class: 'plate__eu' }, 'S'), h('span', { class: 'plate__nr mono' }, regnr || '—'));
 }
 
-// Källänk till annonsen på riddermarkbil.se.
+// Källänk till annonsen på onecargroup.se.
 export function sourceLink(car) {
   if (!car.sourceUrl) return null;
   return h('a', { class: 'sourcelink', href: car.sourceUrl, target: '_blank', rel: 'noopener' },
@@ -253,7 +253,7 @@ export function kontaktBlock(kontakt, opts = {}) {
   };
   return h('aside', { class: 'kontakt' + (opts.compact ? ' kontakt--compact' : '') },
     h('div', { class: 'kontakt__head' },
-      h('span', { class: 'kontakt__kicker' }, 'Din kontakt hos Riddermark'),
+      h('span', { class: 'kontakt__kicker' }, 'Din kontakt hos One Car Group'),
       h('div', { class: 'kontakt__namn' }, kontakt.namn || '—'),
       (kontakt.titel || kontakt.sprak)
         ? h('div', { class: 'kontakt__titel' }, [kontakt.titel, kontakt.sprak].filter(Boolean).join(' · '))

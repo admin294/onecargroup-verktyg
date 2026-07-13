@@ -1,20 +1,20 @@
-/* Riddermark Bilverktyg — designsystem
+/* One Car Group Bilverktyg — designsystem
    Register: produkt (internt säljverktyg + publik delvy).
    Tema: ljust (säljare vid disk i showroom, kundvänd, delbart, utskrivbart).
    Färgstrategi: återhållsam — varm neutral bas tonad mot varumärkeshuen,
-   Riddermarks tegelröda som enda accent, grönt/gult för batterihälsa.
+   One Car Groups turkos som enda accent, grönt/gult för status.
    Typsnitt: Familjen Grotesk (grotesk, ej Inter) + JetBrains Mono för siffror.
-   Palett samplad direkt från Riddermarks logotyp (#B4180C / #A81818). */
+   Palett samplad direkt från onecargroup.se (#3AA6B9 / #2997AA / #003333). */
 
 :root {
   color-scheme: light;
 
-  --brand: oklch(0.52 0.185 28);
-  --brand-600: oklch(0.46 0.18 28);
-  --brand-700: oklch(0.40 0.155 28);
-  --brand-tint: oklch(0.958 0.026 30);
-  --brand-tint-2: oklch(0.915 0.045 30);
-  --on-brand: oklch(0.99 0.008 60);
+  --brand: oklch(0.58 0.10 208);
+  --brand-600: oklch(0.51 0.098 208);
+  --brand-700: oklch(0.44 0.085 206);
+  --brand-tint: oklch(0.968 0.016 202);
+  --brand-tint-2: oklch(0.915 0.032 204);
+  --on-brand: oklch(0.99 0.006 200);
 
   --bg: oklch(0.984 0.005 60);
   --surface: oklch(0.998 0.0025 60);
@@ -40,7 +40,7 @@
   --sh-1: 0 1px 2px oklch(0.3 0.02 45 / 0.05), 0 1px 1px oklch(0.3 0.02 45 / 0.04);
   --sh-2: 0 2px 5px oklch(0.3 0.02 45 / 0.05), 0 12px 30px -14px oklch(0.3 0.02 45 / 0.16);
   --sh-3: 0 4px 8px oklch(0.3 0.02 45 / 0.06), 0 22px 48px -18px oklch(0.28 0.03 40 / 0.28);
-  --ring: 0 0 0 3px oklch(0.52 0.185 28 / 0.20);
+  --ring: 0 0 0 3px oklch(0.58 0.10 208 / 0.22);
 
   --font: 'Familjen Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
@@ -376,7 +376,7 @@ input, select, textarea, button { font: inherit; }
 
 /* ---------- Meddelanden / tillstånd ---------- */
 .notice { border-radius: var(--r); padding: 13px 15px; font-size: 0.9rem; display: flex; gap: 10px; align-items: flex-start; }
-.notice--error { background: var(--weak-tint); border: 1px solid oklch(0.84 0.08 30); color: var(--brand-700); }
+.notice--error { background: var(--weak-tint); border: 1px solid oklch(0.84 0.08 30); color: oklch(0.42 0.16 27); }
 .notice--info { background: var(--surface-2); border: 1px solid var(--border); color: var(--ink-2); }
 
 .empty { text-align: center; padding: 54px 20px; color: var(--ink-3); border: 1px dashed var(--border-2); border-radius: var(--r-lg); background: var(--surface); }
