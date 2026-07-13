@@ -105,11 +105,13 @@ Rebrand from Riddermark → One Car Group (onecargroup.se, Uppsala used-car
 dealer) plus removal of all battery UI. Judgement calls made where the brief
 was ambiguous — each is easy to revert.
 
-1. **Logo asset.** One Car Group only publishes a **square logo mark**
-   (`.../uploads/2026/05/onecargrouplogga-140x140.png`), not a horizontal
-   wordmark. Used it in every logo slot (topbar/login/hero/share); favicon uses
-   the 192×192 cropped icon. Swap the `LOGO_DARK` constant in
-   `public/js/{app,kund,view}.js` if a proper wordmark exists.
+1. **Logo asset.** One Car Group only publishes a **square logo mark**, in two
+   colour variants: `onecargrouplogga-140x140.png` is **white** (for dark
+   backgrounds) and `cropped-One-Car-192x192.png` is **black**. The whole UI is
+   on light surfaces, so the **black** variant is used in every logo slot
+   (topbar/login/hero/share) and as the favicon — the white one would be
+   invisible here. There is no horizontal wordmark; swap the `LOGO_DARK`
+   constant in `public/js/{app,kund,view}.js` if one becomes available.
 
 2. **Brand accent.** Sampled teal **#3AA6B9** (plus #2997AA / #003333) from
    onecargroup.se, replacing the tegelröda. `--brand` is set to a slightly

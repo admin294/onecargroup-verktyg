@@ -4,7 +4,7 @@ import { apiGetRecord, MOCK } from './api.js';
 import { priceBreakdown, datum, kampanjDeadline } from './config.js';
 import { h, clear, icon, carCard, offertCar, breakdownView, countdownBanner, bokaButton, bokaCta, plate, mockRibbon } from './components.js';
 
-const LOGO_DARK = 'https://usercontent.one/wp/www.onecargroup.se/wp-content/uploads/2026/05/onecargrouplogga-140x140.png';
+const LOGO_DARK = 'https://usercontent.one/wp/www.onecargroup.se/wp-content/uploads/2026/05/cropped-One-Car-192x192.png';
 const root = document.getElementById('app');
 
 // id från /v/:id (eller ?id= som reserv för statisk servering).
