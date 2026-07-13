@@ -1,20 +1,20 @@
-/* Riddermark Bilverktyg — designsystem
+/* One Car Group Bilverktyg — designsystem
    Register: produkt (internt säljverktyg + publik delvy).
    Tema: ljust (säljare vid disk i showroom, kundvänd, delbart, utskrivbart).
    Färgstrategi: återhållsam — varm neutral bas tonad mot varumärkeshuen,
-   Riddermarks tegelröda som enda accent, grönt/gult för batterihälsa.
+   One Car Groups turkos som enda accent, grönt/gult för status.
    Typsnitt: Familjen Grotesk (grotesk, ej Inter) + JetBrains Mono för siffror.
-   Palett samplad direkt från Riddermarks logotyp (#B4180C / #A81818). */
+   Palett samplad direkt från onecargroup.se (#3AA6B9 / #2997AA / #003333). */
 
 :root {
   color-scheme: light;
 
-  --brand: oklch(0.52 0.185 28);
-  --brand-600: oklch(0.46 0.18 28);
-  --brand-700: oklch(0.40 0.155 28);
-  --brand-tint: oklch(0.958 0.026 30);
-  --brand-tint-2: oklch(0.915 0.045 30);
-  --on-brand: oklch(0.99 0.008 60);
+  --brand: oklch(0.54 0.10 208);
+  --brand-600: oklch(0.48 0.095 208);
+  --brand-700: oklch(0.42 0.083 206);
+  --brand-tint: oklch(0.968 0.016 202);
+  --brand-tint-2: oklch(0.915 0.032 204);
+  --on-brand: oklch(0.99 0.006 200);
 
   --bg: oklch(0.984 0.005 60);
   --surface: oklch(0.998 0.0025 60);
@@ -40,7 +40,7 @@
   --sh-1: 0 1px 2px oklch(0.3 0.02 45 / 0.05), 0 1px 1px oklch(0.3 0.02 45 / 0.04);
   --sh-2: 0 2px 5px oklch(0.3 0.02 45 / 0.05), 0 12px 30px -14px oklch(0.3 0.02 45 / 0.16);
   --sh-3: 0 4px 8px oklch(0.3 0.02 45 / 0.06), 0 22px 48px -18px oklch(0.28 0.03 40 / 0.28);
-  --ring: 0 0 0 3px oklch(0.52 0.185 28 / 0.20);
+  --ring: 0 0 0 3px oklch(0.54 0.10 208 / 0.25);
 
   --font: 'Familjen Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
@@ -253,28 +253,6 @@ input, select, textarea, button { font: inherit; }
 .equip__item { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-pill); padding: 5px 11px 5px 9px; font-size: 0.83rem; color: var(--ink-2); }
 .equip__ico { width: 0.9em; height: 0.9em; color: var(--good); }
 
-/* ---------- SOH batterihälsobadge ---------- */
-.soh { border-radius: var(--r); padding: 13px 14px; border: 1px solid var(--border); background: var(--surface-2); }
-.soh--good { background: var(--good-tint); border-color: oklch(0.82 0.08 155); }
-.soh--fair { background: var(--warn-tint); border-color: oklch(0.85 0.09 78); }
-.soh--weak { background: var(--weak-tint); border-color: oklch(0.84 0.08 30); }
-.soh__head { display: flex; align-items: center; gap: 9px; }
-.soh__ico { width: 1.25em; height: 1.25em; }
-.soh--good .soh__ico, .soh--good .soh__pct { color: var(--good); }
-.soh--fair .soh__ico, .soh--fair .soh__pct { color: oklch(0.52 0.13 62); }
-.soh--weak .soh__ico, .soh--weak .soh__pct { color: var(--weak); }
-.soh__pct { font-size: 1.35rem; font-weight: 700; }
-.soh__tag { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-2); margin-left: auto; }
-.soh__meta { margin-top: 11px; display: flex; flex-direction: column; gap: 10px; }
-.soh__rating { font-size: 0.8rem; color: var(--ink-2); }
-.soh__stats { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { display: inline-flex; flex-direction: column; gap: 1px; background: oklch(1 0 0 / 0.5); border: 1px solid oklch(0.3 0.02 45 / 0.08); border-radius: var(--r-sm); padding: 5px 9px; }
-.chip__k { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-4); font-weight: 600; }
-.chip__v { font-size: 0.82rem; font-weight: 600; }
-.soh__cert { display: inline-flex; align-items: center; gap: 7px; font-size: 0.86rem; font-weight: 600; color: var(--brand-600); text-decoration: none; padding: 8px 12px; border: 1px solid oklch(0.3 0.02 45 / 0.12); border-radius: var(--r-sm); background: oklch(1 0 0 / 0.55); transition: background 0.16s var(--ease); align-self: flex-start; }
-.soh__cert:hover { background: oklch(1 0 0 / 0.9); }
-.soh--none { display: flex; align-items: center; gap: 8px; padding: 11px 13px; border-radius: var(--r); border: 1px dashed var(--border-2); color: var(--ink-4); font-size: 0.85rem; background: var(--surface-2); }
-
 /* ---------- Galleri + lightbox ---------- */
 .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .gallery--empty { grid-template-columns: 1fr; place-items: center; padding: 22px; color: var(--ink-4); gap: 8px; background: var(--surface-2); border-radius: var(--r); }
@@ -376,7 +354,7 @@ input, select, textarea, button { font: inherit; }
 
 /* ---------- Meddelanden / tillstånd ---------- */
 .notice { border-radius: var(--r); padding: 13px 15px; font-size: 0.9rem; display: flex; gap: 10px; align-items: flex-start; }
-.notice--error { background: var(--weak-tint); border: 1px solid oklch(0.84 0.08 30); color: var(--brand-700); }
+.notice--error { background: var(--weak-tint); border: 1px solid oklch(0.84 0.08 30); color: oklch(0.42 0.16 27); }
 .notice--info { background: var(--surface-2); border: 1px solid var(--border); color: var(--ink-2); }
 
 .empty { text-align: center; padding: 54px 20px; color: var(--ink-3); border: 1px dashed var(--border-2); border-radius: var(--r-lg); background: var(--surface); }

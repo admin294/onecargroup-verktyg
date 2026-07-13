@@ -5,7 +5,7 @@
 
 export const RDM55F = {
   regnr: 'RDM55F',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/bmw/rdm55f/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/bmw/rdm55f/',
   make: 'BMW',
   model: 'iX3',
   modelDescription: '286hk Charged Panorama Adapt-fart Elstol Läder MOMS',
@@ -17,8 +17,6 @@ export const RDM55F = {
   color: 'Svart',
   fuelType: 'El',
   gearbox: 'Automatisk',
-  batteryCapacityGrossKwh: 80,
-  wltpRangeKm: 460,
   vin: 'WBY7X4101MS156671',
   isSold: false,
   location: 'Örebro',
@@ -35,27 +33,18 @@ export const RDM55F = {
   equipment: ['Leasbar/MOMS', 'Charged', 'Panorama', 'Adaptiv farthållare', 'Elstol', 'Läder'],
   inspection: { date: '2025-04-08', mileageMil: 6715 },
   service: { date: '2025-10-10', mileageMil: 4929 },
-  battery: {
-    soh: 94.1,
-    rating: 'GOD HÄLSA – INGA AVVIKELSER UPPTÄCKTA',
-    certUrl: 'https://ride.blob.core.windows.net/battery-tests/31a8b0f7ffb54c6d9c2c76dca92e1f37.pdf',
-    testDate: '2026-05-12',
-    energyNowKwh: 77, energyNewKwh: 82,
-    wltpNowKm: 433, wltpNewKm: 460,
-  },
 };
 
 // MOCK-ONLY demo-bilar (isMock: true). Realistiska svenska lagerbilar för
 // att jämförelsevyn ska se levande ut under utveckling.
 const TSL44K = {
   regnr: 'TSL44K',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/tesla/tsl44k/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/tesla/tsl44k/',
   make: 'Tesla', model: 'Model 3',
   modelDescription: 'Long Range AWD Pano Autopilot Vinterhjul MOMS',
   carName: 'Tesla Model 3 Long Range AWD, 2022',
   modelYear: 2022, price: 312500, initialPrice: 329900,
   mileageMil: 5410, color: 'Midnattsgrå', fuelType: 'El', gearbox: 'Automatisk',
-  batteryCapacityGrossKwh: 82, wltpRangeKm: 602,
   vin: '5YJ3E7EBXNF000273', isSold: false, location: 'Segeltorp', ownerCount: 2,
   coverImage: 'https://picsum.photos/seed/tsl44k-cover/1200/800',
   images: [
@@ -67,22 +56,17 @@ const TSL44K = {
   equipment: ['MOMS', 'Autopilot', 'Panorama', 'Vinterhjul', 'Navigation', 'Värmepump'],
   inspection: { date: '2025-06-19', mileageMil: 4980 },
   service: { date: '2025-09-02', mileageMil: 5120 },
-  battery: {
-    soh: 88.6, rating: 'GOD HÄLSA – MINDRE AVVIKELSE', certUrl: 'https://ride.blob.core.windows.net/battery-tests/tsl44k-demo.pdf',
-    testDate: '2026-04-30', energyNowKwh: 73, energyNewKwh: 82, wltpNowKm: 533, wltpNewKm: 602,
-  },
   isMock: true,
 };
 
 const POL09X = {
   regnr: 'POL09X',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/polestar/pol09x/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/polestar/pol09x/',
   make: 'Polestar', model: '2',
   modelDescription: 'Long Range Dual Motor Plus Pilot Läder',
   carName: 'Polestar 2 Long Range Dual Motor, 2021',
   modelYear: 2021, price: 268900, initialPrice: 268900,
   mileageMil: 11240, color: 'Thunder', fuelType: 'El', gearbox: 'Automatisk',
-  batteryCapacityGrossKwh: 78, wltpRangeKm: 487,
   vin: 'LPSED3KA9ML000914', isSold: false, location: 'Örebro', ownerCount: 4,
   coverImage: 'https://picsum.photos/seed/pol09x-cover/1200/800',
   images: [
@@ -93,23 +77,17 @@ const POL09X = {
   equipment: ['Plus-paket', 'Pilot-paket', 'Läder', 'Harman Kardon', 'Panorama'],
   inspection: { date: '2025-02-11', mileageMil: 9870 },
   service: { date: '2025-08-15', mileageMil: 10430 },
-  battery: {
-    soh: 79.4, rating: 'FÖRHÖJD DEGRADERING – KONTROLLERA', certUrl: 'https://ride.blob.core.windows.net/battery-tests/pol09x-demo.pdf',
-    testDate: '2026-03-18', energyNowKwh: 62, energyNewKwh: 78, wltpNowKm: 387, wltpNewKm: 487,
-  },
   isMock: true,
 };
 
-// Bil utan batteritest (t.ex. ingen AVILOO) → battery null, badgen döljs.
 const VOL71C = {
   regnr: 'VOL71C',
-  sourceUrl: 'https://www.riddermarkbil.se/kopa-bil/volvo/vol71c/',
+  sourceUrl: 'https://www.onecargroup.se/kopa-bil/volvo/vol71c/',
   make: 'Volvo', model: 'XC40',
   modelDescription: 'Recharge Single Motor Core',
   carName: 'Volvo XC40 Recharge, 2023',
   modelYear: 2023, price: 329000, initialPrice: 329000,
   mileageMil: 3120, color: 'Vit', fuelType: 'El', gearbox: 'Automatisk',
-  batteryCapacityGrossKwh: 69, wltpRangeKm: 460,
   vin: 'YV1XZK9V1P2000551', isSold: false, location: 'Malmö',
   coverImage: 'https://picsum.photos/seed/vol71c-cover/1200/800',
   images: [
@@ -119,7 +97,6 @@ const VOL71C = {
   equipment: ['Core-paket', 'Adaptiv farthållare', 'Navigation'],
   inspection: null,
   service: { date: '2025-11-01', mileageMil: 2900 },
-  battery: null,
   isMock: true,
 };
 

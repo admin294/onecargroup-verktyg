@@ -122,3 +122,51 @@ Resolved with a sensible default and kept moving; flag if any is wrong.
     `server.js` uses a brand-neutral graphite palette (was Riddermark tegelrött).
     The frontend session owns the real One Car Group palette — swap the two CSS
     vars if a brand colour is preferred.
+7. **Cover image / images** are hotlinked `ride.blob.core.windows.net` URLs
+   straight from advertJson. No resizing/proxying — per the "link, don't store"
+   rule.
+
+---
+
+# One Car Group rebrand — decisions (frontend, `public/` only)
+
+Rebrand from Riddermark → One Car Group (onecargroup.se, Uppsala used-car
+dealer) plus removal of all battery UI. Judgement calls made where the brief
+was ambiguous — each is easy to revert.
+
+1. **Logo asset.** One Car Group only publishes a **square logo mark**, in two
+   colour variants: `onecargrouplogga-140x140.png` is **white** (for dark
+   backgrounds) and `cropped-One-Car-192x192.png` is **black**. The whole UI is
+   on light surfaces, so the **black** variant is used in every logo slot
+   (topbar/login/hero/share) and as the favicon — the white one would be
+   invisible here. There is no horizontal wordmark; swap the `LOGO_DARK`
+   constant in `public/js/{app,kund,view}.js` if one becomes available.
+
+2. **Brand accent.** Sampled teal **#3AA6B9** (plus #2997AA / #003333) from
+   onecargroup.se, replacing the tegelröda. `--brand` is set to a slightly
+   deeper teal (`oklch(0.54 0.10 208)` ≈ #007E8D → white text ≈ 4.8:1) so white
+   button text clears WCAG AA; bright #3AA6B9 drives `theme-color` + tints. Error
+   notices stay
+   red. Update `--brand*` / `--ring` in `public/css/styles.css` if there's an
+   official brand guide.
+
+3. **Battery removal scope.** Removed the SOH badge + its "no test" fallback,
+   all energy/WLTP-vs-new/cert-PDF content, `batteryLevel()`, the battery/`chip`
+   CSS, and battery data from the fixtures. **Also removed the two EV spec rows
+   `Räckvidd (WLTP)` and `Batteri (brutto)`** from `specRows()`, reading them as
+   part of "energy/WLTP". If those should remain as ordinary specs, revert those
+   two rows in `public/js/components.js`.
+
+4. **Contact block.** onecargroup.se lists no named salesperson, so `KONTAKT`
+   (`public/js/config.js`) uses the general dealership contact — `One Car Group`,
+   `Försäljning · Uppsala`, `018-32 32 80`, `info@onecargroup.se`. Replace with a
+   named seller if wanted.
+
+5. **Fixture plates.** Mock regnrs (`RDM55F` etc.) are Riddermark-flavoured and
+   `RDM55F` is the backend's "real" contract fixture. Left plate strings
+   unchanged (backend owns the contract, outside `public/`); source URLs
+   re-pointed to onecargroup.se paths (illustrative, mock-only).
+
+6. **"Bäst batteri" best-of badge.** This seed has no best-of / row-align badge
+   feature, so there was nothing to drop. Noted so a battery-based "best" isn't
+   introduced later.

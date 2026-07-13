@@ -14,10 +14,10 @@ export const REG_AVGIFT_SEK = 1495;
 
 // Säljarkontakt som visas på den publika kundsidan (/kund).
 export const KONTAKT = {
-  namn: 'Adam Åhfeldt',
-  titel: 'Försäljning',
-  telefon: '070-444 76 83',
-  mejl: 'Adam.ahfeldt@riddermarkbil.se',
+  namn: 'One Car Group',
+  titel: 'Försäljning · Uppsala',
+  telefon: '018-32 32 80',
+  mejl: 'info@onecargroup.se',
   sprak: 'Svenska',
 };
 
@@ -128,14 +128,4 @@ export function datum(iso) {
 // Vilket regnr som helst → normaliserad versal utan blanksteg.
 export function normRegnr(s) {
   return String(s || '').toUpperCase().replace(/[\s-]+/g, '').trim();
-}
-
-// Battery SOH → hälsonivå för färgsättning av badgen.
-// Nivåer: good ≥ 90, fair ≥ 80, weak < 80. null battery → null (dölj badge).
-export function batteryLevel(battery) {
-  if (!battery || battery.soh == null) return null;
-  const soh = Number(battery.soh);
-  if (soh >= 90) return 'good';
-  if (soh >= 80) return 'fair';
-  return 'weak';
 }
