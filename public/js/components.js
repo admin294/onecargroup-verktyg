@@ -255,13 +255,19 @@ export function carCard(car, opts = {}) {
 }
 
 // Bildetalj för offert — bredare kolumnlayout.
+// I offerten grupperas servicehistoriken med en diskret caveat så kunden läser
+// dem tillsammans (visas även när ingen historik finns). Jämförelsekortet
+// (carCard) berörs inte.
 export function offertCar(car) {
   return h('div', { class: 'carcard offert__carcard' },
     cover(car),
     h('div', { class: 'carcard__body' },
       carHeader(car),
       specRows(car),
-      historyRows(car),
+      h('div', { class: 'servicehist' },
+        historyRows(car),
+        h('p', { class: 'servicehist__note' }, 'Ta kontakt med säljaren om det saknas någon service.'),
+      ),
       equipmentList(car),
       gallery(car),
       sourceLink(car),
