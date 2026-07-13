@@ -4,7 +4,7 @@ import { MOCK, apiMe, apiLogin, apiLogout, apiLookup, apiCreateRecord } from './
 import { defaultConfig, priceBreakdown, DACK, GARANTI_AR, GARANTI_SEK, GARANTI_KAMPANJ, kampanjDeadline, kr, normRegnr } from './config.js';
 import { h, clear, icon, carCard, offertCar, breakdownView, countdownBanner, bokaButton, bokaCta, plate, mockRibbon } from './components.js';
 
-const LOGO_DARK = 'https://webfiles24.blob.core.windows.net/webfiles/new-design/assets/logo/logo-dark.png';
+const LOGO_DARK = 'https://usercontent.one/wp/www.onecargroup.se/wp-content/uploads/2026/05/cropped-One-Car-192x192.png';
 const root = document.getElementById('app');
 
 // Live-byggaren har ingen sparad post ännu → kampanjen räknas ned från
@@ -87,7 +87,7 @@ function renderLogin() {
     h('div', { class: 'login' },
       h('div', { class: 'login__aura' }),
       h('div', { class: 'login__card' },
-        h('img', { class: 'login__logo', src: LOGO_DARK, alt: 'Riddermark Bil' }),
+        h('img', { class: 'login__logo', src: LOGO_DARK, alt: 'One Car Group' }),
         h('h1', { class: 'login__title' }, 'Bilverktyg'),
         h('p', { class: 'login__sub' }, 'Bygg jämförelser och offerter från ett registreringsnummer. Inloggning krävs.'),
         form,
@@ -126,7 +126,7 @@ function topbar() {
     h('div', { class: 'container' },
       h('div', { class: 'topbar__in' },
         h('a', { class: 'brandmark', href: '/' },
-          h('img', { src: LOGO_DARK, alt: 'Riddermark Bil' }),
+          h('img', { src: LOGO_DARK, alt: 'One Car Group' }),
           h('span', { class: 'brandmark__tool' }, 'Bilverktyg'),
         ),
         h('div', { class: 'topbar__spacer' }),
@@ -270,7 +270,7 @@ function emptyCompareHint(grid) {
   return h('div', { class: 'empty' },
     h('div', { class: 'empty__ic' }, icon('image')),
     h('h3', {}, 'Ingen jämförelse än'),
-    h('p', {}, 'Ange två till fyra registreringsnummer och hämta bilarna för att se dem sida vid sida med batterihälsa, pris och utrustning.'),
+    h('p', {}, 'Ange två till fyra registreringsnummer och hämta bilarna för att se dem sida vid sida med pris och utrustning.'),
   );
 }
 
@@ -504,7 +504,7 @@ function siteFooter() {
   return h('footer', { class: 'sitefooter' },
     h('div', { class: 'container' },
       h('div', { class: 'sitefooter__in' },
-        h('span', { class: 'sitefooter__copy' }, `© ${new Date().getFullYear()} Riddermark Bil · Internt verktyg`),
+        h('span', { class: 'sitefooter__copy' }, `© ${new Date().getFullYear()} One Car Group · Internt verktyg`),
         gatePowered(),
       ),
     ),

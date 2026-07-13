@@ -1,6 +1,6 @@
 // components.js — delade renderbyggstenar för både verktyget och den publika vyn.
 
-import { kr, mil, km, pct, datum, batteryLevel, formatCountdown } from './config.js';
+import { kr, mil, datum, formatCountdown } from './config.js';
 import { apiBoka } from './api.js';
 
 // ---- Mini-hyperscript ----
@@ -34,7 +34,6 @@ export const clear = (el) => { while (el.firstChild) el.removeChild(el.firstChil
 
 // SVG-ikoner (inga emojis) — enkel stroke-uppsättning.
 const ICON = {
-  battery: '<path d="M4 8h13v8H4z"/><path d="M17 11h2v2h-2z" fill="currentColor" stroke="none"/><path d="M7 12h6"/>',
   pdf: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 13h1.5a1.5 1.5 0 0 0 0-3H9v6"/>',
   external: '<path d="M14 4h6v6"/><path d="M20 4l-8 8"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   check: '<path d="M4 12l5 5L20 6"/>',
@@ -51,39 +50,6 @@ export function icon(name, cls) {
   return h('span', { class: 'ico ' + (cls || ''), html: svg });
 }
 
-// ---- SOH-batterihälsobadge ----
-// Returnerar null om bilen saknar batteritest (badge döljs enligt kontrakt).
-export function sohBadge(car, opts = {}) {
-  const b = car && car.battery;
-  const level = batteryLevel(b);
-  if (!level) return null;
-  const label = { good: 'God hälsa', fair: 'Godtagbar', weak: 'Kontrollera' }[level];
-  return h('div', { class: `soh soh--${level}`, title: b.rating || '' },
-    h('div', { class: 'soh__head' },
-      icon('battery', 'soh__ico'),
-      h('span', { class: 'soh__pct mono' }, pct(b.soh)),
-      h('span', { class: 'soh__tag' }, label),
-    ),
-    opts.compact ? null : h('div', { class: 'soh__meta' },
-      b.rating ? h('div', { class: 'soh__rating' }, capFirst(b.rating)) : null,
-      h('div', { class: 'soh__stats' },
-        b.energyNowKwh != null ? statChip('Energi', `${b.energyNowKwh}/${b.energyNewKwh} kWh`) : null,
-        b.wltpNowKm != null ? statChip('WLTP nu', `${b.wltpNowKm}/${b.wltpNewKm} km`) : null,
-        b.testDate ? statChip('Testad', datum(b.testDate)) : null,
-      ),
-      b.certUrl ? h('a', { class: 'soh__cert', href: b.certUrl, target: '_blank', rel: 'noopener' },
-        icon('pdf'), 'Visa batteritest (PDF)') : null,
-    ),
-  );
-}
-function statChip(label, value) {
-  return h('span', { class: 'chip' }, h('span', { class: 'chip__k' }, label), h('span', { class: 'chip__v mono' }, value));
-}
-function capFirst(s) {
-  s = String(s || '').toLowerCase();
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
 // ---- Specifikationsrader ----
 export function specRows(car) {
   const rows = [
@@ -93,8 +59,6 @@ export function specRows(car) {
     ['Färg', car.color || '—'],
     ['Drivmedel', car.fuelType || '—'],
     ['Växellåda', car.gearbox || '—'],
-    ['Räckvidd (WLTP)', km(car.wltpRangeKm)],
-    ['Batteri (brutto)', car.batteryCapacityGrossKwh != null ? `${car.batteryCapacityGrossKwh} kWh` : '—'],
     ['Antal ägare', car.ownerCount != null ? String(car.ownerCount) : 'uppgift saknas'],
     ['Ort', car.location || '—'],
   ];
@@ -228,7 +192,7 @@ export function plate(regnr) {
   return h('span', { class: 'plate' }, h('span', { class: 'plate__eu' }, 'S'), h('span', { class: 'plate__nr mono' }, regnr || '—'));
 }
 
-// Källänk till annonsen på riddermarkbil.se.
+// Källänk till annonsen på onecargroup.se.
 export function sourceLink(car) {
   if (!car.sourceUrl) return null;
   return h('a', { class: 'sourcelink', href: car.sourceUrl, target: '_blank', rel: 'noopener' },
@@ -253,7 +217,7 @@ export function kontaktBlock(kontakt, opts = {}) {
   };
   return h('aside', { class: 'kontakt' + (opts.compact ? ' kontakt--compact' : '') },
     h('div', { class: 'kontakt__head' },
-      h('span', { class: 'kontakt__kicker' }, 'Din kontakt hos Riddermark'),
+      h('span', { class: 'kontakt__kicker' }, 'Din kontakt hos One Car Group'),
       h('div', { class: 'kontakt__namn' }, kontakt.namn || '—'),
       (kontakt.titel || kontakt.sprak)
         ? h('div', { class: 'kontakt__titel' }, [kontakt.titel, kontakt.sprak].filter(Boolean).join(' · '))
@@ -275,20 +239,12 @@ export function cover(car) {
   );
 }
 
-// När batteri saknas visas en diskret rad i stället för badgen.
-function sohSlot(car) {
-  const badge = sohBadge(car);
-  if (badge) return badge;
-  return h('div', { class: 'soh--none' }, icon('battery'), 'Inget batteritest tillgängligt');
-}
-
 // Fullt bilkort — används i jämförelsen (verktyg + publik vy).
 export function carCard(car, opts = {}) {
   return h('article', { class: 'carcard' },
     cover(car),
     h('div', { class: 'carcard__body' },
       carHeader(car, opts),
-      sohSlot(car),
       specRows(car),
       historyRows(car),
       equipmentList(car),
@@ -304,7 +260,6 @@ export function offertCar(car) {
     cover(car),
     h('div', { class: 'carcard__body' },
       carHeader(car),
-      sohSlot(car),
       specRows(car),
       historyRows(car),
       equipmentList(car),

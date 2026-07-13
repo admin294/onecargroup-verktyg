@@ -1,5 +1,5 @@
 // kund.js — PUBLIK självbetjäningsvy (/kund). Ingen inloggning.
-// Kunden slår upp regnr, ser bilen + AVILOO-batteritest, växlar Offert/
+// Kunden slår upp regnr, ser bilen, växlar Offert/
 // Jämförelse, väljer garanti + däck och ser livepris med 48h-kampanjnedräkning.
 // Återanvänder de delade komponenterna. Sparar inga poster (ingen delbar länk).
 
@@ -13,7 +13,7 @@ import {
   bokaButton, bokaCta,
 } from './components.js';
 
-const LOGO_DARK = 'https://webfiles24.blob.core.windows.net/webfiles/new-design/assets/logo/logo-dark.png';
+const LOGO_DARK = 'https://usercontent.one/wp/www.onecargroup.se/wp-content/uploads/2026/05/cropped-One-Car-192x192.png';
 const root = document.getElementById('app');
 
 // Kampanjen räknas ned från sidladdningen (kundsidan sparar ingen post med
@@ -74,10 +74,10 @@ function hero() {
   return h('header', { class: 'kundhero' },
     h('div', { class: 'container' },
       h('div', { class: 'kundhero__in' },
-        h('a', { class: 'brandmark', href: 'https://www.riddermarkbil.se', target: '_blank', rel: 'noopener' },
-          h('img', { src: LOGO_DARK, alt: 'Riddermark Bil' })),
+        h('a', { class: 'brandmark', href: 'https://www.onecargroup.se', target: '_blank', rel: 'noopener' },
+          h('img', { src: LOGO_DARK, alt: 'One Car Group' })),
         h('h1', { class: 'kundhero__title' }, 'Räkna ut ditt pris'),
-        h('p', { class: 'kundhero__sub' }, 'Ange registreringsnummer så visar vi bilen, batterihälsan (AVILOO-test) och ett prisförslag med garanti och vinterdäck. Kampanjpriset gäller i 48 timmar.'),
+        h('p', { class: 'kundhero__sub' }, 'Ange registreringsnummer så visar vi bilen och ett prisförslag med garanti och vinterdäck. Kampanjpriset gäller i 48 timmar.'),
       ),
     ),
   );
@@ -287,7 +287,7 @@ function compareEmptyHint(grid) {
   return h('div', { class: 'empty' },
     h('div', { class: 'empty__ic' }, icon('image')),
     h('h3', {}, 'Jämför två till fyra bilar'),
-    h('p', {}, 'Skriv in registreringsnummer för de bilar du vill jämföra så visas de sida vid sida med batterihälsa, pris och utrustning.'),
+    h('p', {}, 'Skriv in registreringsnummer för de bilar du vill jämföra så visas de sida vid sida med pris och utrustning.'),
   );
 }
 
@@ -295,7 +295,7 @@ function compareEmptyHint(grid) {
 //  Fel + skelett
 // ============================================================
 const ERR_TEXT = {
-  not_in_stock: 'Bilen finns inte i Riddermarks lager.',
+  not_in_stock: 'Bilen finns inte i One Car Groups lager.',
   fetch_error: 'Kunde inte hämta bilens uppgifter. Försök igen om en stund.',
   bad_regnr: 'Ogiltigt registreringsnummer.',
   rate_limited: 'För många förfrågningar just nu. Vänta en stund och försök igen.',
@@ -337,7 +337,7 @@ function siteFooter() {
     h('div', { class: 'container' },
       h('div', { class: 'kund-footer' }, kontaktBlock(KONTAKT)),
       h('div', { class: 'sitefooter__in' },
-        h('span', { class: 'sitefooter__copy' }, `© ${new Date().getFullYear()} Riddermark Bil`),
+        h('span', { class: 'sitefooter__copy' }, `© ${new Date().getFullYear()} One Car Group`),
         h('a', { class: 'gate-powered', href: 'https://gate1.dev', target: '_blank', rel: 'noopener', dataset: { gatePowered: '' } },
           h('span', { class: 'gate-powered__dot' }), 'Powered by GATE'),
       ),
