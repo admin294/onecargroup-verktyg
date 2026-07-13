@@ -1,6 +1,6 @@
 {
   "services": {
-    "app": {
+    "onecar": {
       "type": "backend",
       "runtime": "node",
       "path": ".",
