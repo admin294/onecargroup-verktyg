@@ -287,6 +287,7 @@ export function breakdownView(breakdown) {
       h('span', { class: 'brow__label' }, 'Att betala'),
       h('span', { class: 'brow__amt value-pop', key: total }, kr(total)),
     ),
+    h('div', { class: 'breakdown__disclaimer' }, 'Alla bud och offerter gäller i 24h pga rådande marknad.'),
     h('div', { class: 'breakdown__note' }, 'Priset inkluderar moms där det anges. Registreringsavgift ingår. Erbjudandet gäller i mån av lager.'),
   );
 
