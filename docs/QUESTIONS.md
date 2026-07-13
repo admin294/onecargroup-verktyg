@@ -115,8 +115,9 @@ was ambiguous — each is easy to revert.
 
 2. **Brand accent.** Sampled teal **#3AA6B9** (plus #2997AA / #003333) from
    onecargroup.se, replacing the tegelröda. `--brand` is set to a slightly
-   deeper teal (`oklch(0.58 0.10 208)`) so white button text keeps ~4.5:1
-   contrast; bright #3AA6B9 drives `theme-color` + tints. Error notices stay
+   deeper teal (`oklch(0.54 0.10 208)` ≈ #007E8D → white text ≈ 4.8:1) so white
+   button text clears WCAG AA; bright #3AA6B9 drives `theme-color` + tints. Error
+   notices stay
    red. Update `--brand*` / `--ring` in `public/css/styles.css` if there's an
    official brand guide.
 

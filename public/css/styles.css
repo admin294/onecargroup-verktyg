@@ -9,9 +9,9 @@
 :root {
   color-scheme: light;
 
-  --brand: oklch(0.58 0.10 208);
-  --brand-600: oklch(0.51 0.098 208);
-  --brand-700: oklch(0.44 0.085 206);
+  --brand: oklch(0.54 0.10 208);
+  --brand-600: oklch(0.48 0.095 208);
+  --brand-700: oklch(0.42 0.083 206);
   --brand-tint: oklch(0.968 0.016 202);
   --brand-tint-2: oklch(0.915 0.032 204);
   --on-brand: oklch(0.99 0.006 200);
@@ -40,7 +40,7 @@
   --sh-1: 0 1px 2px oklch(0.3 0.02 45 / 0.05), 0 1px 1px oklch(0.3 0.02 45 / 0.04);
   --sh-2: 0 2px 5px oklch(0.3 0.02 45 / 0.05), 0 12px 30px -14px oklch(0.3 0.02 45 / 0.16);
   --sh-3: 0 4px 8px oklch(0.3 0.02 45 / 0.06), 0 22px 48px -18px oklch(0.28 0.03 40 / 0.28);
-  --ring: 0 0 0 3px oklch(0.58 0.10 208 / 0.22);
+  --ring: 0 0 0 3px oklch(0.54 0.10 208 / 0.25);
 
   --font: 'Familjen Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
