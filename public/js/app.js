@@ -2,7 +2,7 @@
 
 import { MOCK, apiMe, apiLogin, apiLogout, apiLookup, apiCreateRecord } from './api.js';
 import { defaultConfig, priceBreakdown, DACK, GARANTI_AR, GARANTI_SEK, GARANTI_KAMPANJ, kampanjDeadline, kr, normRegnr } from './config.js';
-import { h, clear, icon, carCard, offertCar, breakdownView, countdownBanner, bokaButton, bokaCta, plate, mockRibbon } from './components.js';
+import { h, clear, icon, carCard, offertCar, breakdownView, countdownBanner, bokaButton, bokaCta, plate, mockRibbon, financeCalculator } from './components.js';
 
 const LOGO_DARK = 'https://usercontent.one/wp/www.onecargroup.se/wp-content/uploads/2026/05/cropped-One-Car-192x192.png';
 const root = document.getElementById('app');
@@ -391,6 +391,7 @@ function buildOffert(car) {
       ),
     ),
     breakdownMount,
+    financeCalculator(car),
     shareMount,
   );
 

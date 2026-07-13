@@ -341,6 +341,108 @@ function ingarBox() {
   );
 }
 
+// ---- Räkneexempel: finansieringskalkylator ----
+// Fristående, interaktiv annuitetskalkyl med restvärde (ballong). Bygger enbart
+// på bilens pris — oberoende av garanti/däck-valen och rör inte total/countdown.
+// Räknar om live vid varje reglageändring. Delas av verktyget, /kund och /v/.
+const FINANCE_TERMS = [12, 24, 36, 48, 60, 72, 84, 96, 120];
+
+export function financeCalculator(car) {
+  const price = Number(car && car.price) || 0;
+  const st = { downPct: 20, rantaPct: 6.95, manader: 72, restPct: 0 };
+
+  // Utdata- och reglage-etiketter som uppdateras utan att rita om (bevarar drag).
+  const outKontant = h('span', { class: 'finance__amt mono' });
+  const outFinansierat = h('span', { class: 'finance__amt mono' });
+  const outRest = h('span', { class: 'finance__amt mono' });
+  const outMonthly = h('span', { class: 'finance__month-amt mono' });
+  const valDown = h('span', { class: 'finance__ctlval mono' });
+  const valRanta = h('span', { class: 'finance__ctlval mono' });
+  const valRest = h('span', { class: 'finance__ctlval mono' });
+
+  function recompute() {
+    const kontant_kr = price * st.downPct / 100;
+    const financed = price - kontant_kr;
+    const residual_kr = price * st.restPct / 100;
+    const r = st.rantaPct / 100 / 12;
+    const n = st.manader;
+    const monthly = r > 0
+      ? (financed - residual_kr / Math.pow(1 + r, n)) * r / (1 - Math.pow(1 + r, -n))
+      : (financed - residual_kr) / n;
+    outKontant.textContent = kr(kontant_kr);
+    outFinansierat.textContent = kr(financed);
+    outRest.textContent = kr(residual_kr);
+    outMonthly.textContent = `ca ${kr(Math.max(0, monthly))}/mån`;
+    valDown.textContent = `${st.downPct} % · ${kr(kontant_kr)}`;
+    valRanta.textContent = `${st.rantaPct.toFixed(2).replace('.', ',')} %`;
+    valRest.textContent = `${st.restPct} % · ${kr(residual_kr)}`;
+  }
+
+  const downInput = h('input', {
+    class: 'finance__range', type: 'range', min: '20', max: '40', step: '1', value: String(st.downPct),
+    'aria-label': 'Kontantinsats i procent',
+    onInput: (e) => { st.downPct = Number(e.target.value); recompute(); },
+  });
+  const rantaInput = h('input', {
+    class: 'finance__range', type: 'range', min: '3', max: '12.95', step: '0.05', value: String(st.rantaPct),
+    'aria-label': 'Årlig nominell ränta i procent',
+    onInput: (e) => { st.rantaPct = Number(e.target.value); recompute(); },
+  });
+  const restInput = h('input', {
+    class: 'finance__range', type: 'range', min: '0', max: '55', step: '1', value: String(st.restPct),
+    'aria-label': 'Restvärde i procent',
+    onInput: (e) => { st.restPct = Number(e.target.value); recompute(); },
+  });
+  const termSelect = h('select', {
+    class: 'select', 'aria-label': 'Löptid i månader',
+    onChange: (e) => { st.manader = Number(e.target.value); recompute(); },
+  }, FINANCE_TERMS.map((t) => h('option', { value: String(t), selected: t === st.manader }, `${t} mån`)));
+
+  const ctl = (label, valEl, control, hint) => h('div', { class: 'finance__ctl' },
+    h('div', { class: 'finance__ctlhead' },
+      h('label', { class: 'finance__ctllabel' }, label),
+      valEl,
+    ),
+    control,
+    hint ? h('div', { class: 'finance__hint' }, hint) : null,
+  );
+
+  const resRow = (label, valEl) => h('div', { class: 'finance__res' },
+    h('span', { class: 'finance__reslabel' }, label), valEl);
+
+  const node = h('section', { class: 'panel finance' },
+    h('div', { class: 'panel__head' },
+      h('div', { class: 'panel__title' }, 'Räkneexempel – finansiering'),
+    ),
+    h('div', { class: 'panel__body' },
+      h('div', { class: 'finance__ctls' },
+        ctl('Kontantinsats', valDown, downInput),
+        ctl('Ränta (årlig nominell)', valRanta, rantaInput),
+        h('div', { class: 'finance__ctl' },
+          h('div', { class: 'finance__ctlhead' }, h('label', { class: 'finance__ctllabel' }, 'Löptid')),
+          termSelect,
+        ),
+        ctl('Restvärde', valRest, restInput, 'Vid 36 mån vanligtvis 40–55%'),
+      ),
+      h('div', { class: 'finance__results' },
+        resRow('Kontantinsats', outKontant),
+        resRow('Finansierat belopp', outFinansierat),
+        resRow('Restvärde', outRest),
+      ),
+      h('div', { class: 'finance__month' },
+        h('span', { class: 'finance__month-label' }, 'Månadskostnad'),
+        outMonthly,
+      ),
+      h('p', { class: 'finance__disclaimer' }, 'Räkneexempel, ej bindande. Ränta sätts individuellt vid kreditprövning.'),
+      h('div', { class: 'finance__perk' }, icon('check', 'finance__perk-ico'),
+        h('span', {}, 'Vid finansiering: 30% rabatt på hjul och garanti.')),
+    ),
+  );
+
+  recompute();
+  return node;
+}
+
 // ============================================================
 //  Boka provkörning — delad knapp + modal (kund, publik /v/:id och personal)
 //  Postar till den publika POST /api/kund/boka (fungerar utan auth).
