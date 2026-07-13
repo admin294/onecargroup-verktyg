@@ -60,39 +60,65 @@ i mockläge (`?mock=1`).
 
 ---
 
-# Open questions / decisions (backend)
+# Open questions / decisions (backend — One Car Group data layer)
 
 Resolved with a sensible default and kept moving; flag if any is wrong.
 
-1. **APP_PASSWORD is a random secret by default.** Declared as a Tier-2 secret,
-   so gate auto-generates a 64-char hex on first deploy. Staff can't memorize
-   that — set a chosen value in Studio → Settings → Secrets. Decision: keep it a
-   secret (not hardcoded); admin overrides with a memorable password post-deploy.
+1. **Data source = the site's own JSON feed, not per-page scraping.** The prompt
+   described scraping `/bilar/` for detail URLs, then parsing each `/bil/<slug>/`
+   page's JSON-LD. On inspection the listing renders client-side and the detail
+   pages' JSON-LD is only page metadata (WebSite/Organization/BreadcrumbList) —
+   **no car data**. The site itself renders from
+   `GET /wp-json/accesspackage/v1/cars`, which returns the **whole inventory
+   (~90 cars) fully structured in one call**. We use that feed as the single
+   source (`lib/inventory.js`). It's strictly better: structured, complete, no
+   buildId/HTML fragility, one request. No per-car detail fetch is needed.
 
-2. **`battery.energyNow/New` orientation.** The AVILOO summary line is
-   `ENERGI77kWh | 82kWh` → we map left = *now* (current, 77), right = *new*
-   (as-new, 82), which the detailed table confirms (Nuvarande 77,2 / Ny 82,0).
-   Same for `WLTP-OMRÅDE433km | 460km` → now 433 / new 460. Matches the contract
-   example.
+2. **`mileageMil` unit.** The feed's `milage` is in Swedish **mil** — verified
+   against the live detail page which labels the same value "Miltal 2 577 mil".
+   Mapped straight to `mileageMil` (matching the contract's mil convention).
 
-3. **`wltpRangeKm` on CAR** is taken from advertJson `attributes`
-   ("Elräckvidd (WLTP): min: 460"), not from `electricWltpRange` (that key is
-   absent on advertJson — it only exists on the listing JSON). NEDC is used as a
-   fallback when WLTP is missing.
+3. **`price` / `priceExMoms`.** `price.value` is the advertised price **incl.
+   moms**; the ex-moms figure the site shows is exactly `price / 1.25`
+   (verified: 639 800 → 511 840). We set `priceExMoms` only when
+   `price.showExcludingVat === true` (VAT-deductible "MOMS" cars, 59/91 in stock);
+   otherwise `null`. `initialPrice` uses `price.previousValue` when present.
 
-4. **`service.date`** in advertJson carries a time (`2026-01-21T00:00:00`); we
-   trim to date-only (`2026-01-21`) to match the contract's `inspection`/`service`
-   shape.
+4. **No battery / no EV range.** OCG has no battery-tested cars, so `battery`,
+   `batteryCapacityGrossKwh` and `wltpRangeKm` are removed from the CAR shape
+   (the feed's range/consumption numbers are mostly 0 and unreliable). `battery.js`
+   / AVILOO PDF parsing is deleted.
 
-5. **`/v/:id` page.** Backend serves `public/v.html` if the frontend provides one,
-   otherwise the app shell (`public/index.html`) so the client can render the
-   record from `GET /api/records/:id`. Frontend session decides which approach.
+5. **`inspection` / `service` dropped.** The OCG feed exposes no besiktning/service
+   history (carfax `reportExists:false`), so these Riddermark fields are removed
+   rather than always-null.
 
-6. **Records payload trust.** `POST /api/records` stores the client-supplied
-   `cars` snapshot as-is (URLs only). We validate `mode` and non-empty `cars`,
-   cap the JSON body at 512 kb, and never fetch/store binary. We do not re-verify
-   each car server-side — the snapshot is whatever the staff member just looked up.
+6. **`vin` is `null`.** The feed has no chassis number today. `normalizeCar` reads
+   `data.vin` so it lights up automatically if OCG ever adds one. ("vin if present".)
 
-7. **Cover image / images** are hotlinked `ride.blob.core.windows.net` URLs
-   straight from advertJson. No resizing/proxying — per the "link, don't store"
-   rule.
+7. **`ownerCount` kept as-is** via `lib/carInfo.js` (anonymous car.info lookup,
+   24h cache + global backoff). Verified live: DSR51C → 3 owners. Often `null` when
+   car.info rate-limits — never blocks the lookup.
+
+8. **Inventory cache in the data volume.** The feed is cached in memory for
+   `INVENTORY_TTL_MINUTES` (default 60, "refresh ~hourly") and mirrored to
+   `DATA_DIR/inventory.json`; on an upstream failure we serve the last disk copy so
+   lookups survive a brief outage. Warmed on boot.
+
+9. **APP_PASSWORD is a random secret by default.** Declared in `.env.example` as a
+   Tier-2 secret, so gate auto-generates a 64-char hex on first deploy. Staff can't
+   memorize that — set a chosen value in Studio → Settings → Secrets. Same for
+   `SESSION_SECRET` (backs the `ocg_session` cookie).
+
+10. **Records payload trust.** `POST /api/records` stores the client-supplied
+    `cars` snapshot as-is (URLs only). We validate `mode` and non-empty `cars`,
+    cap the body at 512 kb, and never fetch/store binary. Snapshot = whatever the
+    staff member just looked up.
+
+11. **Cover image / images** are hotlinked `pro.bbcdn.io` URLs (largest format)
+    straight from the feed — no resizing/proxying, per "link, don't store".
+
+12. **Avboka page palette.** The self-contained `/avboka/:token` page in
+    `server.js` uses a brand-neutral graphite palette (was Riddermark tegelrött).
+    The frontend session owns the real One Car Group palette — swap the two CSS
+    vars if a brand colour is preferred.
