@@ -1,9 +1,9 @@
 {
-  "name": "riddermark-verktyg",
+  "name": "onecargroup-verktyg",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Riddermark Bilverktyg — offert & jämförelse tool for Riddermark Bil staff",
+  "description": "One Car Group Bilverktyg — offert & jämförelse tool for One Car Group staff",
   "engines": {
     "node": ">=22"
   },
@@ -12,7 +12,6 @@
     "test:data": "node scripts/test-data.js"
   },
   "dependencies": {
-    "express": "^4.21.2",
-    "pdf-parse": "^1.1.1"
+    "express": "^4.21.2"
   }
 }

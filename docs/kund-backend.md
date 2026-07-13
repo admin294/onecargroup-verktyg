@@ -1,5 +1,11 @@
 # Backend patch — public customer surface (`/kund`) + owner count
 
+> **Historical (already applied).** This is the original patch note from the
+> Riddermark seed; `lib/rateLimit.js`, `lib/carInfo.js`, the `ownerCount` wiring
+> and `/api/kund/lookup` are all live in the code today. The `RDM55F` / `battery`
+> references below are Riddermark-era context — the One Car Group data layer has
+> **no battery field** and is documented in `API.md`. Kept for provenance.
+
 The frontend for the public customer tool (`public/kund.html`, `public/js/kund.js`)
 and the owner-count **display** ship in this PR. The **backend** pieces below could
 not be committed by the frontend session: `src/` and `lib/` are owned by the backend
